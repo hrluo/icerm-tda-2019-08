@@ -5,16 +5,16 @@ import numpy as np
 
 def annulus_example(R= 1.5, d= .5, n= 100):
     '''
-    Creates a point cloud in R^2 of randomly sampled points from an 
+    Creates a point cloud in R^2 of randomly sampled points from an
     annulus with inner radius R and outer radius R+d.
-    
+
     Parameters
     ----------
     R: float() - inner radius of the annulus
     d: float() - thickness of the annulus
     n: int() - number of points
-    
-    
+
+
     Output
     ------
     np.array of dimensions (n,2)
@@ -27,16 +27,16 @@ def annulus_example(R= 1.5, d= .5, n= 100):
 
 def annulus_variable_d_example(R= 1.5, d= .5, n= 100):
     '''
-    Creates a point cloud in R^2 of randomly sampled points from an 
+    Creates a point cloud in R^2 of randomly sampled points from an
     annulus with inner radius R and outer radius between (R+d, R).
-    
+
     Parameters
     ----------
     R: float() - inner radius of the annulus
     d: float() - thickness of the annulus
     n: int() - number of points
-    
-    
+
+
     Output
     ------
     np.array of dimensions (n,2)
@@ -53,16 +53,16 @@ def annulus_variable_d_example(R= 1.5, d= .5, n= 100):
 
 def annulus2_example(R= 1.5, d= .5, n= 100):
     '''
-    Creates a point cloud in R^2 of randomly sampled points from two overlapping 
+    Creates a point cloud in R^2 of randomly sampled points from two overlapping
     annuli with inner radius R and outer radius R+d.
-    
+
     Parameters
     ----------
     R: float() - inner radius of the annulus
     d: float() - thickness of the annulus
     n: int() - number of points
-    
-    
+
+
     Output
     ------
     np.array of dimensions (n,2)
@@ -76,16 +76,16 @@ def annulus2_example(R= 1.5, d= .5, n= 100):
 
 def annulus_bar_example(R= 1.5, d= .5, n= 100):
     '''
-    Creates a point cloud in R^2 of randomly sampled points from an 
+    Creates a point cloud in R^2 of randomly sampled points from an
     annulus with inner radius R and outer radius R+d with an bar of thickness d cutting it in half.
-    
+
     Parameters
     ----------
     R: float() - inner radius of the annulus
     d: float() - thickness of the annulus
     n: int() - number of points
-    
-    
+
+
     Output
     ------
     np.array of dimensions (n,2)
@@ -101,9 +101,9 @@ def annulus_bar_example(R= 1.5, d= .5, n= 100):
         yy = uniform(-R, R)
         return xx, yy
 
-    return r_[np.array([(rand_annulus_pt()) for x in range(2*n//3)]), 
+    return r_[np.array([(rand_annulus_pt()) for x in range(2*n//3)]),
                  np.array([(vert_bar_pt()) for x in range(n//3)])]
-    
+
 def lorenz_example():
     '''
     TO DO: need to add number of points or something of the sort
@@ -129,17 +129,37 @@ def torus_example(R1= 1, R2= .3, n= 100):
     return np.array([(rand_torus_pt()) for x in range(n)])
 
 # def double_torus_example():
-    
+
 #     return
 
 # def klein_bottle_example():
-    
+
 #     return
 
 # def figure8_example():
-    
+
 #     return
 
-# def pinched_torus_example():
-    
-#     return
+
+def pinched_torus_example(R= 1.5, n= 100):
+    '''
+    Creates a point cloud in R^3 of randomly sampled points from an
+    piched torus with radius R.
+
+    Parameters
+    ----------
+    R: float() - radius of the annulus
+    n: int() - number of points
+
+
+    Output
+    ------
+    np.array of dimensions (n,3)
+    '''
+    def rand_S1_pt():
+        #https://en.wikipedia.org/wiki/Pinched_torus
+        x = uniform(0,2*pi)
+        y = uniform(0,2*pi)
+        g_xy = 2 + sin(x/2)*cos(y)
+        return g_xy*cos(x), g_xy*sin(x), sin(x/2)*sin(y)
+    return np.array([(rand_S1_pt()) for x in range(n)])
