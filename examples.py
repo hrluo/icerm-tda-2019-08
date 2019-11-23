@@ -109,7 +109,7 @@ def lorenz_example():
     TO DO: need to add number of points or something of the sort
     '''
     def f(state, t):
-    (x,y,z) = state
+    	(x,y,z) = state
     return (sigma*(y-x), x*(rho-z)-y, x*y-beta*z)
 
     ts = arange(0,40,0.025)
