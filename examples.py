@@ -164,6 +164,43 @@ def pinched_torus_example(R= 1.5, n= 100):
         return R*g_xy*cos(x), R*g_xy*sin(x), R*sin(x/2)*sin(y)
     return np.array([(rand_S1_pt()) for x in range(n)])
 
+
+def double_pinched_torus_example(R= 1.5, n= 100, a=.5, b=.5, c=0, d=0):
+    '''
+    Creates a point cloud in R^3 of randomly sampled points from an
+    piched torus with radius R.
+
+    Parameters
+    ----------
+    R: float() - radius of the annulus
+    n: int() - number of points
+
+
+    Output
+    ------
+    np.array of dimensions (n,3)
+    '''
+    def rand_S1_pt(a=a,b=b,c=c,d=d):
+        #https://demonstrations.wolfram.com/DupinCyclides/
+        #https://en.wikipedia.org/wiki/Dupin_cyclide
+        u = uniform(-pi,pi)#phi
+        v = uniform(-pi,pi)#psi
+        #if c*c!=(a*a-b*b):
+        #   print('ERROR in parameters')
+     
+        X_coord = d*(c-a*cos(u)*cos(v))+b*b*cos(u)
+        X_coord = X_coord/(c-a*cos(u)*cos(v))
+
+        Y_coord = b*sin(u)*(a-d*cos(v))
+        Y_coord = Y_coord/(c-a*cos(u)*cos(v))
+
+        Z_coord = b*sin(v)*(c*cos(u)-d)
+        Z_coord = Z_coord/(c-a*cos(u)*cos(v))
+    
+        return X_coord, Y_coord, Z_coord
+    return np.array([(rand_S1_pt()) for x in range(n)])
+
+
 def klein_bottle_example_4D(R=0.9, P=1.2, epsilon=0.01, n= 100):
     '''
     Creates a point cloud in R^4 of randomly sampled points from an
