@@ -16,7 +16,7 @@ Setting for iterations for optimization and sample size of points, L^p, L^q arra
 '''
 iter=2501
 Nsample=200
-lp=2
+lp=1
 lq_array=np.array([2,4,8,16])
 alpha_array=np.array([1,0.975,0.95,0.90,0.7,0.5,0.3,0.1,0.05,0.025,0])
 counter=0#image counter
@@ -140,8 +140,6 @@ def plotCir(res,keywrd='TensorFlow',ctr=0):
         plt.plot(edges_constant.T[0,:],edges_constant.T[1,:], c='k', alpha=1) 
     plt.savefig('PinchedTorusPlot_Z{}_{}_{}.png'.format(prime,keywrd,ctr))
     #plt.show()
-import pkg_resources
-pkg_resources.require("tensorflow==1.15")
 import tensorflow as tf
 #Following seems working, c.f. 
 #https://stackoverflow.com/questions/55552715/tensorflow-2-0-minimize-a-simple-function
